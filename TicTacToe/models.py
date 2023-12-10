@@ -7,4 +7,4 @@ class Resultado(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)  # Registra la fecha y hora de la creación del registro
 
     def __str__(self):
-        return f'Resultado #{self.id}'
+        return f'Resultado #{self.id}' 
