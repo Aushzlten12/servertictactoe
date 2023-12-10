@@ -6,6 +6,7 @@ from django.conf import settings
 import os
 import numpy as np
 import tensorflow as tf  # Importa tensorflow directamente
+import json
 
 # MAÑANA LO DESPLEGAMOS EN HEROKU O PYTHONANYWHERE
 @api_view(["POST"])
@@ -26,7 +27,9 @@ def predecir_movimiento(request):
         ruta_modelo_h5 = os.path.join(settings.BASE_DIR, "archivos_modelo", "model.h5")
 
         # Cargar el modelo previamente guardado
-        modelo = tf.keras.models.model_from_json(tf.io.read_file(ruta_modelo_json))
+        with open(ruta_modelo_json, 'r') as json_file:
+            model_json = json_file.read()
+            modelo = tf.keras.models.model_from_json(model_json)
         modelo.load_weights(ruta_modelo_h5)
 
         # Generar posibles movimientos
