@@ -1,0 +1,8 @@
+# Ejemplo de render.yaml
+
+env:
+  - key: DJANGO_SETTINGS_MODULE
+    value: "ServerJuego.settings.production"
+
+buildCommand: "pip install -r requirements.txt"
+startCommand: "python manage.py migrate && python manage.py runserver 0.0.0.0:$PORT"
